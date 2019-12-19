@@ -25,7 +25,7 @@
 
   function datas(){
    
-    let test = {dat: data.dat};
+    let test = {dat: data.dat,count:data.count};
     existingpost.push(test);
     postsstore.set(existingpost);
     console.log($postsstore);
@@ -33,13 +33,13 @@
     
   }
   
-  function addone(){
-    count+=1;
-    let test = {count: data.count};
-    existingpost.push(test);
-    postsstore.set(existingpost);
-    console.log($postsstore);
-    uploaddatastore.set(true);
+  // function addone(){
+  //   count+=1;
+  //   let test = {count: data.count};
+  //   existingpost.push(test);
+  //   postsstore.set(existingpost);
+  //   console.log($postsstore);
+  //   uploaddatastore.set(true);
   
   // loginstore
   
@@ -50,20 +50,20 @@
   // document.getElementById('thisone').innerHTML=foo;
   
 
-}
- 
+// }
+let id = "FTnjSZFRDk2JF5vPZgNC"; 
 
 $:{if ($uploaddatastore == true) {
-let docRef = db.collection("users").doc($loginstore.toString());
+let docRef = db.collection("users").doc(id);
  docRef.get().then(function(doc){
     
     if(doc.exists){
-      console.log("Document data:", doc.data());
+      // console.log("Document data:", doc.data());
       // (postsstore.set({dat:$postsstore}))
-      // postsstore.set({dataa:$postsstore})
+      //  console.log(postsstore.set({dataa:$postsstore}));
       // doc.data().$postsstore;
       // postsstore.set(doc.data().dat)
-      console.log($postsstore)
+      // console.log($postsstore)
       // console.log($postsstore);
     }
     else{
@@ -76,21 +76,21 @@ let docRef = db.collection("users").doc($loginstore.toString());
     console.log("uploaddata");
     uploaddatastore.set(false);
     
-    db.collection("users").doc($loginstore.toString()).set({dataa:$postsstore});
+    db.collection("users").doc(id).set({dataa:$postsstore});
     console.log("uploaddata");
   
 }
 }
 
-$: {if($loadstore==true){
+$: {if($loginclickstore==true){
   
-  let docRef = db.collection("users").doc($loginstore.toString());
+  let docRef = db.collection("users").doc(id);
   docRef.get().then(function(doc){
     
     if (doc.exists){
-      console.log("Document data:", doc.data());
+      // console.log("Document data:", doc.data());
     postsstore.set(doc.data().dataa);
-    console.log($postsstore);
+    // console.log($postsstore);
   } else{
     console.log("No such document!");
     }
@@ -239,7 +239,7 @@ $: {if($loadstore==true){
     </p>
     <hr class="mt-8"/>
     <div class="flex">
-    <button class= "btn hover mt-4"on:click={()=>{addone()}}>
+    <button class= "btn hover mt-4">
       <img alt="likebutton" src="img/like.jpg" class="w-12">
     </button>
     
