@@ -16,7 +16,7 @@
   ],
   "dependencies": {
     "@firebase/auth": "^0.13.2",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "compression": "^1.7.1",
     "firebase": "^7.5.2",
     "firebase-auth-provider": "^1.4.0",
